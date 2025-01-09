@@ -3,8 +3,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import { CalorieProvider } from './context/CalorieContext';
 
-// Import components (we'll create these next)
+// Import components
 import Header from './components/Header';
 import Dashboard from './pages/Dashboard';
 import FoodLog from './pages/FoodLog';
@@ -25,18 +26,20 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <BrowserRouter>
-        <div className="App">
-          <Header />
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/log" element={<FoodLog />} />
-            <Route path="/profile" element={<Profile />} />
-          </Routes>
-        </div>
-      </BrowserRouter>
+      <CalorieProvider>
+        <BrowserRouter>
+          <div className="App">
+            <Header />
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/log" element={<FoodLog />} />
+              <Route path="/profile" element={<Profile />} />
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </CalorieProvider>
     </ThemeProvider>
   );
 }
 
-export default App; 
+export default App;
